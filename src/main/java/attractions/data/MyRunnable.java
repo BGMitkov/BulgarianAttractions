@@ -1,7 +1,6 @@
 package attractions.data;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Locale;
 
 import com.google.maps.GeoApiContext;
@@ -13,20 +12,20 @@ import com.google.maps.model.LatLng;
 public class MyRunnable implements Runnable {
 
 	private static final int LOCATION_COLUMN_INDEX = 6;
-	private String attractionData;
-	private List<String> list;
+	private Attraction attractionData;
+	private StringBuilder result;
 	private GeoApiContext context;
 
-	public MyRunnable(int dataIndex, String attractionData, List<String> synchronizedList, GeoApiContext context) {
+	public MyRunnable(Attraction attractionData, StringBuilder result, GeoApiContext context) {
 		this.attractionData = attractionData;
-		this.list = synchronizedList;
+		this.result = result;
 		this.context = context;
 	}
 	
 	@Override
 	public void run() {
 		try {
-			String[] data = attractionData.split("\",\"");
+			String[] data = attractionData.data;
 			String searchKeyword = null;
 			String location = data[LOCATION_COLUMN_INDEX];
 			String municipality = data[0];
@@ -40,10 +39,10 @@ public class MyRunnable implements Runnable {
 			if(geocodingResults.length > 0) {
 				GeocodingResult geocodingResult = geocodingResults[0];
 				LatLng coordinates = geocodingResult.geometry.location;
-				String updatedData = attractionData
-	                    .concat(String.format(Locale.ROOT,",\"%s\",\"%s\"", coordinates.lat, coordinates.lng));
-				synchronized (list) {
-					list.add(updatedData);
+				
+				String updatedData = String.format(Locale.ROOT,"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s,\"%s\",\"%s\"", attractionData.data, coordinates.lat, coordinates.lng);
+				synchronized (result) {
+					result.append(updatedData).append("\n");
 				}
 			}
 		} catch (ApiException e) {

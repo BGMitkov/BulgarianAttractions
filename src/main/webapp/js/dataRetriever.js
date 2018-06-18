@@ -24,7 +24,7 @@ function processData(allText) {
 	var environment = [];
 	var data = [];
 	var filterIndexes = [ 0, 2, 4, 5, 7, 9 ];
-	var columnCount = 16;
+	var columnCount = 14;
 	data[0] = allTextLines[0].split('","');
 	
 	//remove trailing quotes
@@ -72,7 +72,6 @@ function processData(allText) {
 		removeMarkers();
 		refreshData(data, filterIndexes, selections);
 	});
-	
 	
 	infoWindow = new google.maps.InfoWindow();
 	
