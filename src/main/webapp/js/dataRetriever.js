@@ -24,7 +24,7 @@ function processData(allText) {
 	var environment = [];
 	var data = [];
 	var filterIndexes = [ 0, 2, 4, 5, 7, 9 ];
-	var columnCount = 14;
+	var columnCount = 16;
 	data[0] = allTextLines[0].split('","');
 	
 	//remove trailing quotes
@@ -72,6 +72,7 @@ function processData(allText) {
 		removeMarkers();
 		refreshData(data, filterIndexes, selections);
 	});
+	
 	
 	infoWindow = new google.maps.InfoWindow();
 	
@@ -184,7 +185,7 @@ function getImages(attractionSearchName) {
 			start: 1,
 			imgSize: "medium",
 			searchType: "image",
-			key: "AIzaSyDTUGg6-uFuQMDz4cZDHaNgtARJa3PkCKo",
+			key: "AIzaSyCzazzaQf_jMxhOtxx1m3iSLMmxxpUZXDE",
 			cx: "003471061625072461810:hdmllyffxhk"
 		},
 		success: function(response) {
