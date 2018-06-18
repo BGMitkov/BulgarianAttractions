@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+        width: 80%;
+        float: right;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #filters {
+        height: 100%;
+        width: 20%;
+        float:left;
+      }
+      #filters> * {
+        width: 100%;
+      }
+      select {
+        width: 100%;
+        margin-bottom: 1em;
+      }
+      label {
+        font-weight: bold;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+		var map;
+        function initMap() {
+            window.map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: 42.628801, lng: 25.217969},
+              zoom: 7.5
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6wgwd9ZdJ-AtWy1h0azMg3bhIuDkbq4s&callback=initMap"
+    async defer></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="js/dataRetriever.js"></script>
+  </head>
+  <body>
+    <div id="filters">
+        <div>
+            <h1>Filters</h1>
+        </div>
+        <div>   
+            <label>Община</label><br>
+            <select id="municipality">
+            </select>
+        </div>
+        <div>
+            <label>Вид на атракцията</label><br>
+            <select id="type">
+                <option value="All">Всички</option>
+            </select>
+        </div>
+        <div>
+            <label>Статут</label><br>
+            <select id="statute">
+                <option value="All">Всички</option>
+            </select>
+        </div>
+        <div>
+            <label>Достъпност за посещение</label><br>
+            <select id="accessibility">
+                <option value="All">Всички</option>
+            </select>
+        </div>
+        <div>
+            <label>Транспортна достъпност и връзки</label><br>
+            <select id="transportAccess">
+                <option value="All">Всички</option>
+            </select>
+        </div>
+        <div>
+            <label>Среда</label>
+            <br>
+            <select id="environment">
+                <option value="All">Всички</option>
+            </select>
+        </div>
+    </div>
+    <div id="map"></div>
+    
+    
+  </body>
+</html>
