@@ -19,7 +19,7 @@ public class GeolocationData {
 
 	private static String data;
 	private StringBuilder builder;
-	private static final int MAX_ATTRACTIONS = 1000;
+	private static final int MAX_ATTRACTIONS = 10;
 	private static final String API_KEY = "AIzaSyCzazzaQf_jMxhOtxx1m3iSLMmxxpUZXDE";
 	private GeoApiContext context;
 
@@ -34,6 +34,7 @@ public class GeolocationData {
 			System.out.println("File not found");
 			return;
 		}
+		
 		ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 		List<String> dataWithLatLng = new LinkedList<>();
 		builder = new StringBuilder();

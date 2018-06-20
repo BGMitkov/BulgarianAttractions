@@ -30,6 +30,11 @@
 			<version>0.2.7</version>
 		</dependency>
 		<dependency>
+		    <groupId>com.google.appengine</groupId>
+		    <artifactId>appengine-api-1.0-sdk</artifactId>
+		    <version>1.9.64</version>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-nop</artifactId>
 			<version>1.7.25</version>
