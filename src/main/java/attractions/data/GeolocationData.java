@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+
+import com.google.appengine.api.ThreadManager;
 import com.google.maps.GeoApiContext;
 
 @Singleton
@@ -34,8 +37,9 @@ public class GeolocationData {
 			System.out.println("File not found");
 			return;
 		}
-		
-		ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+		ThreadFactory backgroundThreadFactory = ThreadManager.backgroundThreadFactory();
+		ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(), backgroundThreadFactory);
+		//ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 		List<String> dataWithLatLng = new LinkedList<>();
 		builder = new StringBuilder();
 		try (Scanner scanner = new Scanner(inputStream, "UTF-8")) {
